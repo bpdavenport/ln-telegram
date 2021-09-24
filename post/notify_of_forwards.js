@@ -145,7 +145,7 @@ module.exports = ({forwards, from, id, key, lnd, node, request}, cbk) => {
 
            const between = `${sanitize(fromPeer)} *→* ${sanitize(toPeer)}`;
  
-           return `Earned ${fee.toLocaleString()} on ${tokens.toLocaleString()} (${between} @ ${feeRate} ppm)`
+           return `Earned ${fee.toLocaleString()} on ${tokens.toLocaleString()} (${between} @ ${feeRate} ppm)`;
         });
 
         const text = `💰 ${allForwards.join('\n')}`;

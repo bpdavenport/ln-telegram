@@ -143,12 +143,9 @@ module.exports = ({forwards, from, id, key, lnd, node, request}, cbk) => {
           const fromPeer = inbound.alias || inbound.key || inbound.channel;
           const toPeer = outbound.alias || outbound.key || outbound.channel;
 
-           //const action = `Forwarded ${asBigUnit(tokens)}`;
            const between = `${sanitize(fromPeer)} *→* ${sanitize(toPeer)}`;
-           //const feeInfo = `${asBigUnit(fee)} ${feePercent}% (${feeRate})`;
  
-           return `Earned ${fee} relaying ${tokens} from ${between} (${feeRate} ppm)`
-           // return `Earned ${action} ${between}. Earned ${feeInfo}`;
+           return `Earned ${fee.toLocaleString()} on ${tokens.toLocaleString()} (${between} @ ${feeRate} ppm)`
         });
 
         const text = `💰 ${allForwards.join('\n')}`;

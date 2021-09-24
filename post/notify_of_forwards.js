@@ -151,7 +151,7 @@ module.exports = ({forwards, from, id, key, lnd, node, request}, cbk) => {
            // return `Earned ${action} ${between}. Earned ${feeInfo}`;
         });
 
-        const text = `💰 ${allForwards.join('\n')} - ${from}`;
+        const text = `💰 ${allForwards.join('\n')}`;
 
         return sendMessage({id, key, request, text}, cbk);
       }],

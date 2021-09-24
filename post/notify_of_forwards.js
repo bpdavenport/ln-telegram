@@ -138,6 +138,9 @@ module.exports = ({forwards, from, id, key, lnd, node, request}, cbk) => {
         });
 
         const allForwards = details.map(({fee, inbound, outbound, tokens}) => {
+          if (fee < 500) {
+            return "";
+          }
           const feePercent = asPercent(fee, tokens);
           const feeRate = asPpm(fee, tokens);
           const fromPeer = inbound.alias || inbound.key || inbound.channel;
@@ -148,9 +151,11 @@ module.exports = ({forwards, from, id, key, lnd, node, request}, cbk) => {
            return `Earned ${fee.toLocaleString()} on ${tokens.toLocaleString()} (${between} @ ${feeRate} ppm)`;
         });
 
-        const text = `💰 ${allForwards.join('\n')}`;
-
-        return sendMessage({id, key, request, text}, cbk);
+        const info = allForwards.join('\n');
+        if (info) {
+          const text = `💰 ${info}`;
+          return sendMessage({id, key, request, text}, cbk);
+        }
       }],
     },
     returnResult({reject, resolve}, cbk));
